@@ -24,7 +24,7 @@ module IssueModelPatch
 		    @total_accepted_estimate_hours ||=
 		      self_and_descendants.
 		        joins("LEFT JOIN #{EstimateEntry.table_name} ON #{EstimateEntry.table_name}.issue_id = #{Issue.table_name}.id")
-		        .where("#{EstimateEntry.table_name}.is_accepted = 1")
+		        .where("#{EstimateEntry.table_name}.is_accepted = '1'")
 		        .sum("#{EstimateEntry.table_name}.hours").to_f || 0.0
 		  end		  
 	end
