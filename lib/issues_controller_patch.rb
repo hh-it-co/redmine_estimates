@@ -6,8 +6,8 @@ module IssuesControllerPatch
 
     base.class_eval do
        unloadable
-       alias_method_chain :show, :patch
-       alias_method_chain :update, :patch
+       alias_method :show, :show_with_patch
+       alias_method :update, :update_with_patch
     end
   end
 

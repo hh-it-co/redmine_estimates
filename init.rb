@@ -3,15 +3,15 @@ require_relative 'lib/issues_controller_patch'
 require_relative 'lib/issue_model_patch'
 require_relative 'lib/issue_query_patch'
 
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
   IssuesController.send :include, IssuesControllerPatch
 end
 
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
   Issue.send :include, IssueModelPatch
 end
 
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
   IssueQuery.send :include, IssueQueryPatch
 end
 

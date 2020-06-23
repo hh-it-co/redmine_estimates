@@ -6,8 +6,8 @@ module IssueQueryPatch
 
     base.class_eval do
       unloadable
-      alias_method_chain :available_columns, :patch
-      alias_method_chain :initialize_available_filters, :patch
+      alias_method :available_columns, :available_columns_with_patch
+      alias_method :initialize_available_filters, :initialize_available_filters_with_patch
 
       self.available_columns.concat([
 		QueryColumn.new(:total_estimate_hours, :sortable => "COALESCE((SELECT SUM(hours) FROM #{EstimateEntry.table_name} WHERE #{EstimateEntry.table_name}.issue_id = #{Issue.table_name}.id), 0)"),
